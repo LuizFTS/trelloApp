@@ -1,0 +1,108 @@
+.card {
+  background-color: rgb(241, 242, 244);
+
+  border-radius: 12px;
+  margin-right: 12px;
+
+  width: 272px;
+}
+
+.card_header {
+  display: flex;
+  width: 100%;
+  height: 37px;
+}
+
+.card_header_title {
+  flex-grow: 2;
+}
+
+.card_header div {
+  position: relative;
+}
+
+.card_header div input {
+  position: absolute;
+  margin-left: 11px;
+  margin-top: 8px;
+  height: 18px;
+
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card_header div input:focus {
+  border: 2px solid #388bff;
+  border-radius: 5px;
+  background-color: white;
+}
+.active {
+  color: black;
+}
+
+.notActive {
+  color: transparent;
+}
+.card p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-top: 10px;
+}
+
+.card_header_icon {
+  display: flex;
+  flex-basis: 30px;
+  height: 37px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_header_icon span {
+  display: flex;
+  padding: 6px;
+  margin-right: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: 0.1s;
+}
+
+.card_header_icon span:hover {
+  background-color: #92929288;
+}
+
+.card_header_icon span svg {
+  font-size: 18px;
+}
+
+.addcard {
+  display: flex;
+}
+
+.addcard span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-left: 10px;
+  margin-bottom: 5px;
+  color: #5e6c84;
+  padding: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.addcard span:hover {
+  background-color: rgba(211, 211, 211, 0.7);
+  border-radius: 5px;
+}
+
+.addcard span svg {
+  margin-right: 10px;
+}
+
+.addcard span p {
+  margin: 0;
+  font-size: 14px;
+}
