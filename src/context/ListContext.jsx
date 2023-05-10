@@ -7,10 +7,7 @@ export const ListContextProvider = ({ children }) => {
     {
       id: 1,
       name: "Pendências SOS",
-      tasks: [
-        { id: 1, title: "Tarefa 1" },
-        { id: 2, title: "Tarefa 2" },
-      ],
+      tasks: [{ id: 1, title: "Tarefa 1" }],
     },
     {
       id: 2,
@@ -18,6 +15,7 @@ export const ListContextProvider = ({ children }) => {
       tasks: [
         { id: 1, title: "Tarefa 1" },
         { id: 2, title: "Tarefa 2" },
+        { id: 3, title: "Tarefa 3" },
       ],
     },
     {
