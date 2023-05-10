@@ -1,0 +1,39 @@
+.cardcontent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 10px;
+  padding: 1px;
+  background-color: white;
+  color: #758195;
+
+  border-radius: 10px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.412);
+  transition: 0.2s;
+}
+
+.cardcontent:hover {
+  background-color: rgb(241, 242, 244);
+}
+
+.cardcontent:hover .cardcontent_span {
+  color: #758195;
+}
+
+.cardcontent p {
+  margin: 8px;
+  font-size: 14px;
+}
+
+.cardcontent_span {
+  padding: 5px;
+  margin-right: 5px;
+  color: transparent;
+  border-radius: 8px;
+  transition: 0.1s;
+}
+
+.cardcontent_span:hover {
+  background-color: rgb(194, 194, 194);
+}

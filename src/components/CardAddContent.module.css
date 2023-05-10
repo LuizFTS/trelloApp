@@ -1,0 +1,37 @@
+.cardAddContent {
+  display: flex;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.173);
+  color: white;
+
+  border-radius: 12px;
+  margin-right: 12px;
+
+  height: 50px;
+  width: 272px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.cardAddContent:hover {
+  background-color: #006dac;
+}
+
+.cardAddContentBtn {
+  display: flex;
+  align-items: center;
+}
+
+.cardAddContentBtn span {
+  margin-left: 10px;
+  height: 20px;
+}
+
+.cardAddContentBtn span svg {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  margin: 0 5px;
+}
