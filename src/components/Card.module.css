@@ -139,7 +139,7 @@
   justify-content: space-between;
 }
 
-.addcard_textarea_buttons div button {
+.addcard_textarea_buttons div input {
   background-color: #0c66e4;
   color: white;
   transition: 0.2s;
@@ -148,7 +148,7 @@
   flex-basis: 150px;
 }
 
-.addcard_textarea_buttons div button:hover {
+.addcard_textarea_buttons div input:hover {
   background-color: #0a55be;
 }
 

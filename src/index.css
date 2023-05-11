@@ -8,7 +8,8 @@ body {
   background-color: #0079bf;
 }
 
-button {
+button,
+input[type="submit"] {
   background-color: transparent;
   border: transparent;
   outline: none;

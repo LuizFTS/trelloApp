@@ -1,5 +1,6 @@
 .cardAddContent {
   display: flex;
+  /* flex-direction: column; */
   align-items: center;
 
   background-color: rgba(255, 255, 255, 0.173);
@@ -15,13 +16,41 @@
   transition: 0.2s;
 }
 
+.cardAddContentActive {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: rgb(241, 242, 244);
+
+  border-radius: 12px;
+  margin-right: 12px;
+
+  height: 70px;
+  width: 272px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.cardAddContent_form_Inactive {
+  height: 0;
+  width: 20px;
+  visibility: hidden;
+}
+
 .cardAddContent:hover {
   background-color: #006dac;
 }
 
+/* Verificar porque o width não ocupa 100% do container */
+
 .cardAddContentBtn {
   display: flex;
   align-items: center;
+  width: 272px;
+}
+
+.cardAddContentBtnActive {
+  display: none;
 }
 
 .cardAddContentBtn span {
@@ -34,4 +63,52 @@
   padding: 0;
   font-size: 20px;
   margin: 0 5px;
+}
+
+.cardAddContent_form {
+  width: calc(100%);
+  visibility: show;
+  transition: 0.4s;
+}
+
+.cardAddContent_form div input {
+  background-color: #0c66e4;
+  color: white;
+  transition: 0.2s;
+  padding: 10px;
+  cursor: pointer;
+  flex-basis: 150px;
+  border-radius: 3px;
+}
+
+.cardAddContent_form div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: #5e6c84;
+}
+
+.cardAddContent_form_input {
+  height: 18px;
+  width: calc(100% - 10px);
+
+  font-size: 16px;
+  font-weight: 500;
+  border: 2px solid #388bff !important;
+  border-radius: 5px;
+  background-color: white !important;
+}
+
+.cardAddContent_form div input:hover {
+  background-color: #0a55be;
+}
+
+.cardAddContent_form div svg {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.cardAddContent_form div svg:hover {
+  color: #3a4251;
 }

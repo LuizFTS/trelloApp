@@ -22,6 +22,12 @@ const Main = () => {
   /* useEffect(() => {
     console.log(data);
   }, [data]); */
+  /* console.log(data); */
+
+  const handleAddList = (e) => {
+    e.preventDefault();
+    console.log("teste");
+  };
 
   return (
     <div className={styles.main}>
@@ -32,7 +38,7 @@ const Main = () => {
           <Card data={i} key={i.id} clickFunction={handleTitleChange} />
         ))
       )}
-      <CardAddContent />
+      <CardAddContent handleAddList={handleAddList} />
     </div>
   );
 };

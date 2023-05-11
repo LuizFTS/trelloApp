@@ -11,6 +11,8 @@ const Card = ({ data, clickFunction }) => {
   const [title, setTitle] = useState(["Clique para alterar o texto", data.id]);
   const [inputActive, setInputActive] = useState(false);
   const [activeAddCard, setActiveAddCard] = useState(false);
+  const [cardName, setCardName] = useState("");
+  const [test, setTest] = useState([]);
 
   const handleSetTitle = (e) => {
     if (e.target.value === "" && e.key === "Enter") {
@@ -32,18 +34,38 @@ const Card = ({ data, clickFunction }) => {
     }
   };
 
-  const handleAddTask = () => {
+  const handleShowAddTask = () => {
     setActiveAddCard(true);
-    console.log([...tasks, "T"]);
+  };
+
+  const handleAddCard = (e) => {
+    e.preventDefault();
+
+    if (cardName === "") {
+      return;
+    }
+
+    setTasks((prevState) => {
+      return [...prevState, { id: Math.random(), title: cardName }];
+    });
+
+    setCardName("");
+    setActiveAddCard(false);
   };
 
   const handleKeyDownAddTask = (e) => {
     if (e.key === "Enter" || e.key === "Esc") {
       e.target.blur();
       setActiveAddCard(false);
+
+      setTasks((prevState) => {
+        return [
+          ...prevState,
+          { id: tasks[tasks.length - 1] + 1, title: cardName },
+        ];
+      });
     } else if (e.key !== "Enter" || e.key !== "Esc") {
     }
-    console.log(activeAddCard);
   };
 
   const handleCloseAddTask = () => {
@@ -54,10 +76,6 @@ const Card = ({ data, clickFunction }) => {
     setTitle([data.name, data.id]);
     setTasks(data.tasks);
   }, [data]);
-
-  useEffect(() => {
-    console.log(activeAddCard);
-  }, [activeAddCard]);
 
   return (
     <div className={styles.card} onClick={clickFunction}>
@@ -95,20 +113,26 @@ const Card = ({ data, clickFunction }) => {
       })}
       <div className={styles.addcard}>
         {!activeAddCard ? (
-          <span onClick={handleAddTask}>
+          <span onClick={handleShowAddTask}>
             <FiPlus />
             <p>Adicionar um cartão</p>
           </span>
         ) : (
-          <div className={styles.addcard_textarea}>
+          <form
+            className={styles.addcard_textarea}
+            onSubmit={(e) => handleAddCard(e)}
+            onBlur={(e) => handleAddCard(e)}
+          >
             <textarea
               name="adicionarCartao"
               placeholder="Insira um título para este cartão..."
               onKeyDown={(e) => handleKeyDownAddTask(e)}
+              onChange={(e) => setCardName(e.target.value)}
+              value={cardName}
             ></textarea>
             <div className={styles.addcard_textarea_buttons}>
               <div>
-                <button className="btn">Adicionar Cartão</button>
+                <input type="submit" value="Adicionar Cartão" className="btn" />
                 <CgClose
                   className={styles.addcard_closeBtn}
                   onClick={handleCloseAddTask}
@@ -118,7 +142,7 @@ const Card = ({ data, clickFunction }) => {
                 <BiDotsHorizontalRounded className={styles.addcard_menu} />
               </div>
             </div>
-          </div>
+          </form>
         )}
 
         {/* <span>

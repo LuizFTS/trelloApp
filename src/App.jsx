@@ -7,19 +7,6 @@ import Sidebar from "./components/Sidebar";
 import SubTitle from "./components/SubTitle";
 
 const App = () => {
-  const [lista, setLista] = useState([]);
-
-  const data = [
-    { id: 1, name: "Pendências SOS" },
-    { id: 2, name: "Pendências e-mail" },
-    { id: 3, name: "Pendências Geral" },
-    { id: 4, name: "Anotações" },
-  ];
-
-  useEffect(() => {
-    setLista(data);
-  }, []);
-
   return (
     <div>
       <Header />
@@ -27,7 +14,7 @@ const App = () => {
         <Sidebar />
         <div className={styles.main}>
           <SubTitle />
-          <Main lista={lista} />
+          <Main />
         </div>
       </div>
     </div>
