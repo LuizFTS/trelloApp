@@ -43,6 +43,8 @@ const Card = ({ data, clickFunction }) => {
 
     if (cardName === "") {
       return;
+    } else if (e.key === "s") {
+      console.log(e.key);
     }
 
     setTasks((prevState) => {
@@ -93,9 +95,9 @@ const Card = ({ data, clickFunction }) => {
             <input
               type="text"
               className={styles.active}
+              value={title[0]}
               onChange={(e) => setTitle([e.target.value, data.id])}
               onKeyDown={(e) => handleSetTitle(e)}
-              value={title[0]}
               onBlur={(e) => handleSetTitleFocusOut(e)}
             />
           )}
@@ -126,7 +128,11 @@ const Card = ({ data, clickFunction }) => {
             <textarea
               name="adicionarCartao"
               placeholder="Insira um título para este cartão..."
-              onKeyDown={(e) => handleKeyDownAddTask(e)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  handleAddCard(e);
+                }
+              }}
               onChange={(e) => setCardName(e.target.value)}
               value={cardName}
             ></textarea>
