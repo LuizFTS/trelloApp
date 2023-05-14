@@ -24,9 +24,12 @@ const Main = () => {
   }, [data]); */
   /* console.log(data); */
 
-  const handleAddList = (e) => {
-    e.preventDefault();
-    console.log("teste");
+  const handleAddList = (newList) => {
+    console.log(newList);
+
+    setData((prevState) => {
+      return [...prevState, newList];
+    });
   };
 
   return (

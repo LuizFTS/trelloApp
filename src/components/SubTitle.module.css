@@ -2,7 +2,8 @@
   background-color: #005c91;
   color: white;
   height: 56px;
-  width: calc(100vw - 260px);
+  /*  width: calc(100vw); */
+  width: 100%;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #297eb0;

@@ -12,7 +12,6 @@ const Card = ({ data, clickFunction }) => {
   const [inputActive, setInputActive] = useState(false);
   const [activeAddCard, setActiveAddCard] = useState(false);
   const [cardName, setCardName] = useState("");
-  const [test, setTest] = useState([]);
 
   const handleSetTitle = (e) => {
     if (e.target.value === "" && e.key === "Enter") {
@@ -111,7 +110,9 @@ const Card = ({ data, clickFunction }) => {
         </div>
       </div>
       {tasks.map((i) => {
-        return <CardContent title={i.title} key={i.id} />;
+        return (
+          <CardContent title={i.title} key={i.id} task={i} parent={data} />
+        );
       })}
       <div className={styles.addcard}>
         {!activeAddCard ? (

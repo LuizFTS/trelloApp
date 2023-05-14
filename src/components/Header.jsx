@@ -9,7 +9,7 @@ const Header = () => {
         <BsFillGrid3X3GapFill />
       </span>
       <span>
-        <h1>Trello</h1>
+        <h1>ollerT</h1>
       </span>
       <ul>
         <li>

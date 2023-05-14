@@ -1,11 +1,18 @@
 import styles from "./CardContent.module.css";
 import { BiEditAlt } from "react-icons/bi";
 
-import React from "react";
+import { useModalContext } from "../context/TaskDetailModalContext";
 
-const CardContent = ({ title }) => {
+import React from "react";
+import { useEffect } from "react";
+
+const CardContent = ({ title, task, parent }) => {
+  const { openModal } = useModalContext();
   return (
-    <div className={styles.cardcontent}>
+    <div
+      className={styles.cardcontent}
+      onClick={() => openModal({ task, parent })}
+    >
       <p>{title}</p>
       <span className={styles.cardcontent_span}>
         <BiEditAlt />

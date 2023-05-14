@@ -5,13 +5,15 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Sidebar from "./components/Sidebar";
 import SubTitle from "./components/SubTitle";
+import TaskModal from "./components/ModalComponent/TaskModal";
 
 const App = () => {
   return (
     <div>
+      <TaskModal />
       <Header />
       <div className={styles.main_sidebar}>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className={styles.main}>
           <SubTitle />
           <Main />
