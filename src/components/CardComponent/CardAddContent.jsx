@@ -1,12 +1,22 @@
-import styles from "./cardAddContent.module.css";
-
-import { FiPlus } from "react-icons/fi";
-import { CgClose } from "react-icons/cg";
+// React Hooks
 import { useState, useRef, useEffect } from "react";
 
-const CardAddContent = ({ handleAddList }) => {
+// CSS module file
+import styles from "./cardAddContent.module.css";
+
+// React Icons
+import { FiPlus } from "react-icons/fi";
+import { CgClose } from "react-icons/cg";
+
+// Context
+import { useListContext } from "../../context/ListContext";
+
+const CardAddContent = () => {
   const [newList, setNewList] = useState({ id: 0, name: "", tasks: [] });
   const [active, setActive] = useState(false);
+
+  const { handleAddNewList } = useListContext();
+
   const focusRef = useRef(null);
 
   useEffect(() => {
@@ -29,7 +39,7 @@ const CardAddContent = ({ handleAddList }) => {
       return;
     }
 
-    handleAddList(newList);
+    handleAddNewList(newList);
 
     setNewList({ id: 0, name: "", tasks: [] });
     setActive(false);

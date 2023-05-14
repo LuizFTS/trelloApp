@@ -1,3 +1,4 @@
+// React Hooks
 import { useState, useRef, useEffect } from "react";
 
 const EditText = (props) => {

@@ -1,10 +1,11 @@
+// CSS module file
 import styles from "./CardContent.module.css";
+
+// React Icons
 import { BiEditAlt } from "react-icons/bi";
 
-import { useModalContext } from "../context/TaskDetailModalContext";
-
-import React from "react";
-import { useEffect } from "react";
+// Context
+import { useModalContext } from "../../context/TaskDetailModalContext";
 
 const CardContent = ({ title, task, parent }) => {
   const { openModal } = useModalContext();

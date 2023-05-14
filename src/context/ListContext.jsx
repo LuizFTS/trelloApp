@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+// React Hooks
+import { createContext, useContext, useState } from "react";
 
 export const ListContext = createContext();
 
@@ -57,9 +58,40 @@ export const ListContextProvider = ({ children }) => {
       ],
     },
   ]);
+
+  // Função para alterar o título de uma lista
+  const handleChangeListTitle = (text, id) => {
+    let newList = data.filter((item) => {
+      if (item.id === id) {
+        item.name = text;
+      }
+      return item;
+    });
+    setData(newList);
+  };
+
+  // Função para adicionar uma nova lista
+  const handleAddNewList = (newList) => {
+    setData((prevState) => {
+      return [...prevState, newList];
+    });
+  };
+
   return (
-    <ListContext.Provider value={{ data, setData }}>
+    <ListContext.Provider
+      value={{ data, setData, handleChangeListTitle, handleAddNewList }}
+    >
       {children}
     </ListContext.Provider>
   );
+};
+
+export const useListContext = () => {
+  const context = useContext(ListContext);
+
+  if (!context) {
+    console.log("ListContext não encontrado!");
+  }
+
+  return context;
 };

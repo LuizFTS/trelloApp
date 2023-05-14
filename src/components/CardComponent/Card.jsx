@@ -1,35 +1,48 @@
+// React Hooks
+import { useEffect, useState } from "react";
+
+// CSS module file
 import styles from "./Card.module.css";
 
+// React Icons
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { FiPlus } from "react-icons/fi";
-import { useEffect, useState } from "react";
+
+// Context
+import { useListContext } from "../../context/ListContext";
+
+// Component
 import CardContent from "./CardContent";
 
-const Card = ({ data, clickFunction }) => {
+const Card = ({ listItem }) => {
   const [tasks, setTasks] = useState([]);
-  const [title, setTitle] = useState(["Clique para alterar o texto", data.id]);
+  const [title, setTitle] = useState([
+    "Clique para alterar o texto",
+    listItem.id,
+  ]);
   const [inputActive, setInputActive] = useState(false);
   const [activeAddCard, setActiveAddCard] = useState(false);
   const [cardName, setCardName] = useState("");
+  const { handleChangeListTitle } = useListContext();
 
   const handleSetTitle = (e) => {
     if (e.target.value === "" && e.key === "Enter") {
-      setTitle(["Insira um título", data.id]);
+      setTitle(["Insira um título", listItem.id]);
       e.target.blur();
-      clickFunction(e.target.value, data.id);
+      handleChangeListTitle(e.target.value, listItem.id);
     } else if (e.key === "Enter") {
-      setTitle([e.target.value, data.id]);
+      setTitle([e.target.value, listItem.id]);
       e.target.blur();
-      clickFunction(e.target.value, data.id);
+      handleChangeListTitle(e.target.value, listItem.id);
     }
   };
 
   const handleSetTitleFocusOut = (e) => {
     setInputActive(false);
     if (e.target.value === "") {
-      setTitle(["Insira um título", data.id]);
-      clickFunction(e.target.value, data.id);
+      setTitle(["Insira um título", listItem.id]);
+      handleChangeListTitle(e.target.value, listItem.id);
     }
   };
 
@@ -74,12 +87,12 @@ const Card = ({ data, clickFunction }) => {
   };
 
   useEffect(() => {
-    setTitle([data.name, data.id]);
-    setTasks(data.tasks);
-  }, [data]);
+    setTitle([listItem.name, listItem.id]);
+    setTasks(listItem.tasks);
+  }, [listItem]);
 
   return (
-    <div className={styles.card} onClick={clickFunction}>
+    <div className={styles.card} onClick={handleChangeListTitle}>
       <div className={styles.card_header}>
         <div className={styles.card_header_title}>
           {!inputActive ? (
@@ -88,14 +101,14 @@ const Card = ({ data, clickFunction }) => {
               className={styles.notActive}
               onFocus={() => setInputActive(true)}
               value={title[0]}
-              onChange={(e) => setTitle([e.target.value, data.id])}
+              onChange={(e) => setTitle([e.target.value, listItem.id])}
             />
           ) : (
             <input
               type="text"
               className={styles.active}
               value={title[0]}
-              onChange={(e) => setTitle([e.target.value, data.id])}
+              onChange={(e) => setTitle([e.target.value, listItem.id])}
               onKeyDown={(e) => handleSetTitle(e)}
               onBlur={(e) => handleSetTitleFocusOut(e)}
             />
@@ -111,7 +124,7 @@ const Card = ({ data, clickFunction }) => {
       </div>
       {tasks.map((i) => {
         return (
-          <CardContent title={i.title} key={i.id} task={i} parent={data} />
+          <CardContent title={i.title} key={i.id} task={i} parent={listItem} />
         );
       })}
       <div className={styles.addcard}>
@@ -151,11 +164,6 @@ const Card = ({ data, clickFunction }) => {
             </div>
           </form>
         )}
-
-        {/* <span>
-          <FiPlus />
-          <p>Adicionar um cartão</p>
-        </span> */}
       </div>
     </div>
   );

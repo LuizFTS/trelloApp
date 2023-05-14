@@ -1,28 +1,15 @@
-import { useListContext } from "../hooks/useListContext";
-
-import Card from "./Card";
-import CardAddContent from "./CardAddContent";
+// CSS module file
 import styles from "./Main.module.css";
 
-import React, { useEffect, useState } from "react";
+// Components
+import Card from "./CardComponent/Card";
+import CardAddContent from "./CardComponent/CardAddContent";
+
+// Context
+import { useListContext } from "../context/ListContext";
 
 const Main = () => {
   const { data, setData } = useListContext();
-
-  const handleTitleChange = (text, id) => {
-    let newList = data.filter((item) => {
-      if (item.id === id) {
-        item.name = text;
-      }
-      return item;
-    });
-    setData(newList);
-  };
-
-  /* useEffect(() => {
-    console.log(data);
-  }, [data]); */
-  /* console.log(data); */
 
   const handleAddList = (newList) => {
     console.log(newList);
@@ -37,9 +24,7 @@ const Main = () => {
       {data <= 0 ? (
         <></>
       ) : (
-        data.map((i) => (
-          <Card data={i} key={i.id} clickFunction={handleTitleChange} />
-        ))
+        data.map((item) => <Card listItem={item} key={item.id} />)
       )}
       <CardAddContent handleAddList={handleAddList} />
     </div>

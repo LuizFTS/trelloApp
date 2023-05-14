@@ -13,6 +13,20 @@
   padding: 1.3em;
 }
 
+.modal_header span {
+  display: flex;
+  align-items: center;
+}
+
+.modal_header span div {
+  flex-grow: 2;
+}
+
+.modal_header p {
+  display: inline-block;
+  margin-left: 36px !important;
+}
+
 .main h1,
 .main h2,
 .main h3,
@@ -63,7 +77,7 @@
   transition: 0.5s;
 }
 
-.main svg {
+.closeIcon {
   font-size: 18px;
   position: absolute;
   right: 10px;
@@ -73,7 +87,7 @@
   z-index: 11;
 }
 
-.main svg:hover {
+.closeIcon:hover {
   color: black;
   transform: scale(1.2);
 }
@@ -83,6 +97,7 @@
 }
 
 .maincontent {
+  display: flex;
   flex-direction: row;
   flex-grow: 2;
 }
@@ -90,4 +105,31 @@
 .modalsidebar {
   flex-basis: 200px;
   background-color: whitesmoke;
+}
+
+.icons {
+  margin-right: 10px;
+  font-size: 24px;
+}
+
+/* Description */
+
+.maincontent span {
+  width: 100%;
+}
+
+.icons_description {
+  margin: 0 12px 0 20.8px;
+  font-size: 24px;
+}
+
+.textarea_description {
+  width: calc(100% - 20px);
+  height: 80px;
+  background-color: transparent;
+  box-shadow: none;
+  transition: 0.2s;
+}
+.textarea_description:focus {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.415);
 }

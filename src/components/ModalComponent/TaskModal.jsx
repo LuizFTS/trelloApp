@@ -1,24 +1,25 @@
 import styles from "./TaskModal.module.css";
-import { useModalContext } from "../../context/TaskDetailModalContext";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { CgClose } from "react-icons/cg";
+import { RiWindow2Fill } from "react-icons/ri";
+import { GrTextAlignFull } from "react-icons/gr";
 
-import { useChangeTitle } from "../../hooks/useChangeTitle";
-
+import { useModalContext } from "../../context/TaskDetailModalContext";
 import EditText from "../EditText";
-import { useEffect } from "react";
 
 const TaskModal = () => {
   const { task, closeModal } = useModalContext();
+  const [description, setDescription] = useState("");
   const [taskTitle, setTaskTitle] = useState("");
 
   useEffect(() => {
-    console.log(task);
     if (task.visible === false) {
       return;
     }
 
     setTaskTitle(task.task.title);
+    setDescription(task.task.description);
   }, [task.visible]);
 
   const handleChangeText = (e) => {
@@ -45,18 +46,32 @@ const TaskModal = () => {
             }}
           >
             <div className={styles.main}>
-              <CgClose onClick={() => closeModal()} />
+              <CgClose
+                className={styles.closeIcon}
+                onClick={() => closeModal()}
+              />
               <div className={styles.modal_header}>
-                <EditText changeText={handleChangeText}>
-                  {task.task.title}
-                </EditText>
+                <span>
+                  <RiWindow2Fill className={styles.icons} />
+                  <EditText changeText={handleChangeText}>
+                    {task.task.title}
+                  </EditText>
+                </span>
                 <p>na lista {task.parent.name}</p>
               </div>
 
               <div className={styles.content}>
                 <div className={styles.maincontent}>
-                  <h2>Descrição</h2>
-                  <textarea name="description" />
+                  <GrTextAlignFull className={styles.icons_description} />
+                  <span>
+                    <h2>Descrição</h2>
+                    <textarea
+                      name="description"
+                      className={styles.textarea_description}
+                      value={task.task.description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </span>
                 </div>
                 <div className={styles.modalsidebar}>
                   <ul>

@@ -1,4 +1,7 @@
+// CSS module file
 import styles from "./Header.module.css";
+
+// React Icons
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { MdKeyboardArrowDown } from "react-icons/md";
 

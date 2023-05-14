@@ -1,3 +1,4 @@
+// CSS module file
 import styles from "./SubTitle.module.css";
 
 const SubTitle = () => {
