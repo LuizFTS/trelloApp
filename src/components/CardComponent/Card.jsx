@@ -16,6 +16,10 @@ import { useListContext } from "../../context/ListContext";
 import CardContent from "./CardContent";
 
 const Card = ({ listItem }) => {
+  // Using context
+  const { handleChangeListTitle } = useListContext();
+
+  // Setting States
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState([
     "Clique para alterar o texto",
@@ -24,20 +28,26 @@ const Card = ({ listItem }) => {
   const [inputActive, setInputActive] = useState(false);
   const [activeAddCard, setActiveAddCard] = useState(false);
   const [cardName, setCardName] = useState("");
-  const { handleChangeListTitle } = useListContext();
 
+  // Function to verify if the input has an empty value;
+  // If it has then set a default title;
+  // This function is used when the return key is pressed
   const handleSetTitle = (e) => {
     if (e.target.value === "" && e.key === "Enter") {
       setTitle(["Insira um título", listItem.id]);
       e.target.blur();
       handleChangeListTitle(e.target.value, listItem.id);
-    } else if (e.key === "Enter") {
+      return;
+    } else if (e.target.value === "" && e.key === "Enter") {
       setTitle([e.target.value, listItem.id]);
       e.target.blur();
       handleChangeListTitle(e.target.value, listItem.id);
     }
   };
 
+  // Function to verify if the input has an empty value;
+  // If it has then set a default title;
+  // This function is used when the input is onBlur()
   const handleSetTitleFocusOut = (e) => {
     setInputActive(false);
     if (e.target.value === "") {
@@ -46,19 +56,18 @@ const Card = ({ listItem }) => {
     }
   };
 
+  // Function to show the form to add a new task inside the list
   const handleShowAddTask = () => {
     setActiveAddCard(true);
   };
 
+  // Function to submit the form to add a new task to the list
   const handleAddCard = (e) => {
     e.preventDefault();
 
     if (cardName === "") {
       return;
-    } else if (e.key === "s") {
-      console.log(e.key);
     }
-
     setTasks((prevState) => {
       return [...prevState, { id: Math.random(), title: cardName }];
     });

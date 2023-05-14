@@ -59,19 +59,53 @@ export const ListContextProvider = ({ children }) => {
     },
   ]);
 
-  // Função para alterar o título de uma lista
+  // Function to change the title of a list
   const handleChangeListTitle = (text, id) => {
+    // Define a variable to filter the list that it'll change the title of
     let newList = data.filter((item) => {
+      //Finding the list
       if (item.id === id) {
+        // Changing the name of the list
         item.name = text;
       }
+
+      // Returning the new array with the name changed
       return item;
     });
+
+    // Replace the previous array with the new array with the name of the list changed
     setData(newList);
   };
 
-  // Função para adicionar uma nova lista
+  // Function to change the title of a task
+  const handleChangeTaskTitle = (text, taskId, parentID) => {
+    // Define a variable to filter the list that will have the task that it'll change the title of
+    let newList = data.filter((list) => {
+      // Finding the list
+      if (list.id === parentID) {
+        list.tasks.map((task) => {
+          // Finding the task inside the list
+          if (task.id === taskId) {
+            // Changing the title of the task
+            task.title = text;
+          }
+
+          // Returning the task with the title changed
+          return task;
+        });
+      }
+
+      // Returning the list with the name changed and the title of the task changed as well
+      return list;
+    });
+
+    // Change the Data Array with the new Array with the changed title of the task
+    setData(newList);
+  };
+
+  // Function to add a new list in the data
   const handleAddNewList = (newList) => {
+    // Get the previous value of the array and insert a new item into it
     setData((prevState) => {
       return [...prevState, newList];
     });
@@ -79,13 +113,20 @@ export const ListContextProvider = ({ children }) => {
 
   return (
     <ListContext.Provider
-      value={{ data, setData, handleChangeListTitle, handleAddNewList }}
+      value={{
+        data,
+        setData,
+        handleChangeListTitle,
+        handleAddNewList,
+        handleChangeTaskTitle,
+      }}
     >
       {children}
     </ListContext.Provider>
   );
 };
 
+// Custom hook to use the List Context
 export const useListContext = () => {
   const context = useContext(ListContext);
 

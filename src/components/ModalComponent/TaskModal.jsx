@@ -1,18 +1,31 @@
+// React Hooks
+import { useState, useEffect } from "react";
+
+// CSS module file
 import styles from "./TaskModal.module.css";
 
-import { useState, useEffect } from "react";
+// React Icons
 import { CgClose } from "react-icons/cg";
 import { RiWindow2Fill } from "react-icons/ri";
 import { GrTextAlignFull } from "react-icons/gr";
 
+// Context
 import { useModalContext } from "../../context/TaskDetailModalContext";
+import { useListContext } from "../../context/ListContext";
+
+// Components
 import EditText from "../EditText";
 
 const TaskModal = () => {
+  // Import contexts
   const { task, closeModal } = useModalContext();
+  const { handleChangeTaskTitle } = useListContext();
+
+  // Set States
   const [description, setDescription] = useState("");
   const [taskTitle, setTaskTitle] = useState("");
 
+  // Set Task title and description every time task.visible is changed
   useEffect(() => {
     if (task.visible === false) {
       return;
@@ -22,8 +35,13 @@ const TaskModal = () => {
     setDescription(task.task.description);
   }, [task.visible]);
 
+  // Function to change the title of the task
   const handleChangeText = (e) => {
+    if (e.target.value === "") {
+      return;
+    }
     setTaskTitle(e.target.value);
+    handleChangeTaskTitle(e.target.value, task.task.id, task.parent.id);
   };
 
   return (
@@ -53,7 +71,7 @@ const TaskModal = () => {
               <div className={styles.modal_header}>
                 <span>
                   <RiWindow2Fill className={styles.icons} />
-                  <EditText changeText={handleChangeText}>
+                  <EditText handleChangeText={handleChangeText}>
                     {task.task.title}
                   </EditText>
                 </span>
