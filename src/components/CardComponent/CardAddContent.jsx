@@ -12,19 +12,17 @@ import { CgClose } from "react-icons/cg";
 import { useListContext } from "../../context/ListContext";
 
 const CardAddContent = () => {
+  // Using context
+  const { handleAddNewList } = useListContext();
+
+  // Setting states
   const [newList, setNewList] = useState({ id: 0, name: "", tasks: [] });
   const [active, setActive] = useState(false);
 
-  const { handleAddNewList } = useListContext();
-
+  // Setting Refs
   const focusRef = useRef(null);
 
-  useEffect(() => {
-    if (active) {
-      focusRef.current.focus();
-    }
-  }, [active]);
-
+  // Function to set the state Active to show or hide the form to add a new list
   const handleFocus = (status) => {
     if (status === true) {
       setActive(true);
@@ -33,6 +31,7 @@ const CardAddContent = () => {
     }
   };
 
+  // Function to submit the form to add a new list
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newList.name === "") {
@@ -45,6 +44,16 @@ const CardAddContent = () => {
     setActive(false);
   };
 
+  // The form for adding a new list will be focused every time it is requested to be shown
+  // It was required to add a timeout function due the transition delay in the CSS file
+  useEffect(() => {
+    if (active) {
+      setTimeout(() => {
+        focusRef.current.focus();
+      }, 400);
+    }
+  }, [active]);
+
   return (
     <div
       className={!active ? styles.cardAddContent : styles.cardAddContentActive}
@@ -54,7 +63,6 @@ const CardAddContent = () => {
           !active ? styles.cardAddContentBtn : styles.cardAddContentBtnActive
         }
         onClick={() => handleFocus(true)}
-        /* onClick={() => setActive(true)} */
       >
         <span>
           <FiPlus />
