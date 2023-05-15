@@ -77,6 +77,7 @@ const CardAddContent = () => {
             : styles.cardAddContent_form
         }
         onSubmit={(e) => handleSubmit(e)}
+        onBlur={(e) => setActive(false)}
       >
         <input
           type="text"

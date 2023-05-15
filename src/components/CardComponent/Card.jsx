@@ -84,9 +84,12 @@ const Card = ({ listItem }) => {
     setActiveAddCard(false);
   };
 
+  // Pressing either the Enter or Escape key will cause the input to lose focus
   const handleKeyDownAddTask = (e) => {
     if (e.target.value !== "" && e.key === "Enter") {
       e.target.blur();
+      setActiveAddCard(false);
+    } else if (e.target.value === "" && e.key === "Enter") {
       setActiveAddCard(false);
     } else if (e.key === "Escape") {
       setActiveAddCard(false);
